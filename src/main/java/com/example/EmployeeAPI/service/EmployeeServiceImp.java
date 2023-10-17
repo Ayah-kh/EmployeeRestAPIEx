@@ -4,6 +4,8 @@ import com.example.EmployeeAPI.model.Employee;
 import com.example.EmployeeAPI.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeServiceImp implements EmployeeService{
 
@@ -15,6 +17,11 @@ public class EmployeeServiceImp implements EmployeeService{
 
     @Override
     public Employee saveEmployee(Employee employee) {
-        return null;
+        return employeeRepository.save(employee);
+    }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        return employeeRepository.findAll();
     }
 }
