@@ -19,25 +19,28 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
-        return new  ResponseEntity<Employee>(employeeService.saveEmployee(employee),HttpStatus.CREATED);
+    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
+        return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Employee> getAllEmployee(){
+    public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployee();
     }
+
     @GetMapping("{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id){
-return new ResponseEntity<>(employeeService.getEmployeeById(id),HttpStatus.OK);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id) {
+        return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
     }
+
     @PutMapping("{id}")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee,@PathVariable long id){
-    return new ResponseEntity<>(employeeService.updateEmployee(employee,id),HttpStatus.OK);
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable long id) {
+        return new ResponseEntity<>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteEmployeeById(@PathVariable long id){
-        return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
+    public ResponseEntity<String> deleteEmployeeById(@PathVariable long id) {
+        employeeService.deleteEmployeeById(id);
+        return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
     }
 }
