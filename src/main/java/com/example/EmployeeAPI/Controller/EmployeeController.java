@@ -2,6 +2,7 @@ package com.example.EmployeeAPI.Controller;
 
 import com.example.EmployeeAPI.model.Employee;
 import com.example.EmployeeAPI.service.EmployeeService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,9 @@ public class EmployeeController {
     @GetMapping
     public List<Employee> getAllEmployee(){
         return employeeService.getAllEmployee();
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id){
+return new ResponseEntity<>(employeeService.getEmployeeById(id),HttpStatus.OK);
     }
 }
