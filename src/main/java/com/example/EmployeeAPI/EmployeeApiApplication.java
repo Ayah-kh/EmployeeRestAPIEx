@@ -1,8 +1,8 @@
 package com.example.EmployeeAPI;
 
-import com.example.EmployeeAPI.entity.Gender;
-import com.example.EmployeeAPI.entity.User;
-import com.example.EmployeeAPI.entity.UserProfile;
+import com.example.EmployeeAPI.entity.*;
+import com.example.EmployeeAPI.repository.PostRepository;
+import com.example.EmployeeAPI.repository.TagRepository;
 import com.example.EmployeeAPI.repository.UserProfileRepository;
 import com.example.EmployeeAPI.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,24 +25,43 @@ public class EmployeeApiApplication implements CommandLineRunner {
 	@Autowired
 	private UserProfileRepository userProfileRepository;
 
+	@Autowired
+	private TagRepository tagRepository;
+
+	@Autowired
+	private PostRepository postRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
-		User user=new User();
-		user.setName("Ayah");
-		user.setEmail("Ayah@gmail.com");
+//		User user=new User();
+//		user.setName("Ayah");
+//		user.setEmail("Ayah@gmail.com");
+//
+//		UserProfile userProfile = new UserProfile();
+//		userProfile.setAddress("Amman");
+//		userProfile.setBirthOfDate(LocalDate.of(1991,03,24));
+//		userProfile.setGender(Gender.FEMALE);
+//		userProfile.setPhoneNumber("000000000");
+//
+//		user.setUserProfile(userProfile);
+//		userProfile.setUser(user);
+//
+//		userRepository.save(user);
 
-		UserProfile userProfile = new UserProfile();
-		userProfile.setAddress("Amman");
-		userProfile.setBirthOfDate(LocalDate.of(1991,03,24));
-		userProfile.setGender(Gender.FEMALE);
-		userProfile.setPhoneNumber("000000000");
+		Post post=new Post("Hibernate",
+				"Hibernate Many to Many",
+				"Hibernate Many to Many");
 
-		user.setUserProfile(userProfile);
-		userProfile.setUser(user);
+		Tag springBoot = new Tag("Spring Boot");
+		Tag hibernate = new Tag("Hibernate");
 
-		userRepository.save(user);
+		post.getTags().add(springBoot);
+		post.getTags().add(hibernate);
 
+		springBoot.getPosts().add(post);
+		hibernate.getPosts().add(post);
 
+		this.postRepository.save(post);
 
 	}
 }
