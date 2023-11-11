@@ -1,7 +1,6 @@
 package com.example.EmployeeAPI.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -11,8 +10,11 @@ import java.util.Set;
 @Entity
 @Table(name = "tags")
 public class Tag {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "tags")
     private Set<Post> posts = new HashSet<>();
 
     public Tag() {
