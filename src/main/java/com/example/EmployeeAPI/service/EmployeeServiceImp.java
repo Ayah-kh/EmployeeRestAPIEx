@@ -3,6 +3,7 @@ package com.example.EmployeeAPI.service;
 import com.example.EmployeeAPI.exeption.ResourceNotFoundException;
 import com.example.EmployeeAPI.model.Employee;
 import com.example.EmployeeAPI.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.module.ResolutionException;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class EmployeeServiceImp implements EmployeeService{
+
 
     private EmployeeRepository employeeRepository;
 
