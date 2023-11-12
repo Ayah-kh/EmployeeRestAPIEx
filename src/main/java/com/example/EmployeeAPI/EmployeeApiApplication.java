@@ -1,20 +1,19 @@
 package com.example.EmployeeAPI;
 
-import com.example.EmployeeAPI.entity.*;
-import com.example.EmployeeAPI.repository.*;
+import com.example.EmployeeAPI.entity.Comment;
+import com.example.EmployeeAPI.entity.Post1;
+import com.example.EmployeeAPI.repository.CommentRepository;
+import com.example.EmployeeAPI.repository.Post1Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.LocalDate;
-
 @SpringBootApplication
 public class EmployeeApiApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeApiApplication.class, args);
-	}
+    @Autowired
+    Post1Repository post1Repository;
 
 //	@Autowired
 //	private UserRepository userRepository;
@@ -27,15 +26,15 @@ public class EmployeeApiApplication implements CommandLineRunner {
 //
 //	@Autowired
 //	private PostRepository postRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
-	@Autowired
-	Post1Repository post1Repository;
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeApiApplication.class, args);
+    }
 
-	@Autowired
-	CommentRepository commentRepository;
-
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 //		User user=new User();
 //		user.setName("Ayah");
 //		user.setEmail("Ayah@gmail.com");
@@ -75,10 +74,32 @@ public class EmployeeApiApplication implements CommandLineRunner {
 //		this.postRepository.save(post1);
 //		this.postRepository.save(post2);
 
-	Post1 post=new Post1("One to Many Mapping","Using Hibernate");
-	Comment comment1=new Comment("very useful");
-	Comment comment2=new Comment("very informative");
-	Comment comment3=new Comment("Great post");
+        Post1 post = new Post1("One to Many Mapping", "Using Hibernate");
+        Post1 post2 = new Post1("Connection to database", "Spring boot basics");
+        Comment comment1 = new Comment("very useful");
+        Comment comment2 = new Comment("very informative");
+        Comment comment3 = new Comment("Great post");
+        Comment comment4 = new Comment("You are the best");
+        Comment comment5 = new Comment("I hate you");
+        Comment comment6 = new Comment("Thinking");
 
-	}
+        post.getComments().add(comment1);
+        post.getComments().add(comment2);
+        post.getComments().add(comment3);
+
+        post2.getComments().add(comment4);
+
+
+        post2.getComments().add(comment5);
+
+
+
+        this.post1Repository.save(post);
+        this.post1Repository.save(post2);
+
+        Post1 postExisted = post1Repository.findById(1L).orElseThrow(RuntimeException::new);
+        postExisted.getComments().add(comment6);
+
+        this.post1Repository.save(postExisted);
+    }
 }

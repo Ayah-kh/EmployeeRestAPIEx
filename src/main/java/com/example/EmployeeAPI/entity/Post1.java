@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "posts_social")
 public class Post1 {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pc_fid", referencedColumnName = "id")
