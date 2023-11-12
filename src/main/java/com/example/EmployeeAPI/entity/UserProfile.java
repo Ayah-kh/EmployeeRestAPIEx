@@ -17,7 +17,7 @@ public class UserProfile {
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private LocalDate birthOfDate;
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "userProfile")
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private User user;
 
     public UserProfile() {

@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "posts_social")
 public class Post1 {
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "pc_fid", referencedColumnName = "id")
     List<Comment> comments = new ArrayList<>();
     @Id

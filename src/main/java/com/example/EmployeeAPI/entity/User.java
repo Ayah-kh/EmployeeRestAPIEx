@@ -12,7 +12,7 @@ public class User {
     private long id;
     private String name;
     private String email;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "user")
     private UserProfile userProfile;
 
     public User() {
@@ -21,7 +21,7 @@ public class User {
     public User(String name, String email, UserProfile userProfile) {
         this.name = name;
         this.email = email;
-        this.userProfile = userProfile;
+//        this.userProfile = userProfile;
     }
 
 
