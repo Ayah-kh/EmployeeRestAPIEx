@@ -1,10 +1,7 @@
 package com.example.EmployeeAPI;
 
 import com.example.EmployeeAPI.entity.*;
-import com.example.EmployeeAPI.repository.PostRepository;
-import com.example.EmployeeAPI.repository.TagRepository;
-import com.example.EmployeeAPI.repository.UserProfileRepository;
-import com.example.EmployeeAPI.repository.UserRepository;
+import com.example.EmployeeAPI.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,17 +16,23 @@ public class EmployeeApiApplication implements CommandLineRunner {
 		SpringApplication.run(EmployeeApiApplication.class, args);
 	}
 
-	@Autowired
-	private UserRepository userRepository;
+//	@Autowired
+//	private UserRepository userRepository;
+//
+//	@Autowired
+//	private UserProfileRepository userProfileRepository;
+//
+//	@Autowired
+//	private TagRepository tagRepository;
+//
+//	@Autowired
+//	private PostRepository postRepository;
 
 	@Autowired
-	private UserProfileRepository userProfileRepository;
+	Post1Repository post1Repository;
 
 	@Autowired
-	private TagRepository tagRepository;
-
-	@Autowired
-	private PostRepository postRepository;
+	CommentRepository commentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -48,29 +51,34 @@ public class EmployeeApiApplication implements CommandLineRunner {
 //
 //		userRepository.save(user);
 
-		Post post1=new Post("Hibernate",
-				"Hibernate Many to Many",
-				"Hibernate Many to Many");
-		Post post2=new Post("Spring boot",
-				"Spring boot Many to Many",
-				"Spring boot Many to Many");
+//		Post post1=new Post("Hibernate",
+//				"Hibernate Many to Many",
+//				"Hibernate Many to Many");
+//		Post post2=new Post("Spring boot",
+//				"Spring boot Many to Many",
+//				"Spring boot Many to Many");
+//
+//		Tag springBoot = new Tag("Spring Boot");
+//		Tag hibernate = new Tag("Hibernate");
+//
+//		post1.getTags().add(springBoot);
+//		post1.getTags().add(hibernate);
+//
+//		post2.getTags().add(springBoot);
+//		post2.getTags().add(hibernate);
+//
+//		springBoot.getPosts().add(post1);
+//		springBoot.getPosts().add(post2);
+//		hibernate.getPosts().add(post1);
+//		hibernate.getPosts().add(post2);
+//
+//		this.postRepository.save(post1);
+//		this.postRepository.save(post2);
 
-		Tag springBoot = new Tag("Spring Boot");
-		Tag hibernate = new Tag("Hibernate");
-
-		post1.getTags().add(springBoot);
-		post1.getTags().add(hibernate);
-
-		post2.getTags().add(springBoot);
-		post2.getTags().add(hibernate);
-
-		springBoot.getPosts().add(post1);
-		springBoot.getPosts().add(post2);
-		hibernate.getPosts().add(post1);
-		hibernate.getPosts().add(post2);
-
-		this.postRepository.save(post1);
-		this.postRepository.save(post2);
+	Post1 post=new Post1("One to Many Mapping","Using Hibernate");
+	Comment comment1=new Comment("very useful");
+	Comment comment2=new Comment("very informative");
+	Comment comment3=new Comment("Great post");
 
 	}
 }
