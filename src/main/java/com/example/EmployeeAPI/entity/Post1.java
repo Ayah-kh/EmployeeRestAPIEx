@@ -14,6 +14,8 @@ public class Post1 {
     private String title;
     private String description;
 
+    List<Comment> comments = new ArrayList<>();
+
     public Post1() {
     }
 
@@ -21,8 +23,6 @@ public class Post1 {
         this.title = title;
         this.description = description;
     }
-
-    List<Comment> comments = new ArrayList<>();
 
     public String getTitle() {
         return title;
