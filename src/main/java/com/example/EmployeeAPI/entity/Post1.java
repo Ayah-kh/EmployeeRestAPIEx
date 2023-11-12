@@ -8,13 +8,14 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 public class Post1 {
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pc_fid", referencedColumnName = "id")
+    List<Comment> comments = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String description;
-
-    List<Comment> comments = new ArrayList<>();
 
     public Post1() {
     }
