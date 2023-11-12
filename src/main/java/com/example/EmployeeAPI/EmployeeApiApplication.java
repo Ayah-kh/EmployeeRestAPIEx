@@ -48,20 +48,29 @@ public class EmployeeApiApplication implements CommandLineRunner {
 //
 //		userRepository.save(user);
 
-		Post post=new Post("Hibernate",
+		Post post1=new Post("Hibernate",
 				"Hibernate Many to Many",
 				"Hibernate Many to Many");
+		Post post2=new Post("Spring boot",
+				"Spring boot Many to Many",
+				"Spring boot Many to Many");
 
 		Tag springBoot = new Tag("Spring Boot");
 		Tag hibernate = new Tag("Hibernate");
 
-		post.getTags().add(springBoot);
-		post.getTags().add(hibernate);
+		post1.getTags().add(springBoot);
+		post1.getTags().add(hibernate);
 
-		springBoot.getPosts().add(post);
-		hibernate.getPosts().add(post);
+		post2.getTags().add(springBoot);
+		post2.getTags().add(hibernate);
 
-		this.postRepository.save(post);
+		springBoot.getPosts().add(post1);
+		springBoot.getPosts().add(post2);
+		hibernate.getPosts().add(post1);
+		hibernate.getPosts().add(post2);
+
+		this.postRepository.save(post1);
+		this.postRepository.save(post2);
 
 	}
 }
