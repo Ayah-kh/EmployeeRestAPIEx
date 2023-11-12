@@ -18,6 +18,7 @@ public class UserProfile {
     private Gender gender;
     private LocalDate birthOfDate;
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public UserProfile() {

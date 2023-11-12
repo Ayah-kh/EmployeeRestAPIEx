@@ -13,6 +13,7 @@ public class User {
     private String name;
     private String email;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "user")
+//    @JoinColumn(name = "up_id")
     private UserProfile userProfile;
 
     public User() {
@@ -21,7 +22,7 @@ public class User {
     public User(String name, String email, UserProfile userProfile) {
         this.name = name;
         this.email = email;
-//        this.userProfile = userProfile;
+        this.userProfile = userProfile;
     }
 
 
