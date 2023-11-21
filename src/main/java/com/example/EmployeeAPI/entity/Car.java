@@ -10,7 +10,13 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String model;
-    @OneToOne
-    @JoinColumn(name = "car_id",referencedColumnName = "id") //on the owning side
+    @OneToOne(mappedBy = "car")//the field which owns the relationship
     private Owner owner;
+
+    public Car() {
+    }
+
+    public Car(String model) {
+        this.model = model;
+    }
 }

@@ -9,6 +9,18 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToOne(mappedBy = "car")//the field which owns the relationship
+    @OneToOne
+    @JoinColumn(name = "car_id",referencedColumnName = "id") //on the owning side
     private Car car;
+
+    public Owner() {
+    }
+
+    public Owner(String name) {
+        this.name = name;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
 }
