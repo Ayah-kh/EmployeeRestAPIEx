@@ -12,6 +12,7 @@ public class MyStream {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @ManyToMany(mappedBy = "followedStreams")
     private List<Viewer> followers = new ArrayList<>();
 
     public MyStream() {

@@ -13,6 +13,12 @@ public class Viewer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nickName;
+    @ManyToMany
+    @JoinTable(
+            name = "followed_stream",
+           joinColumns = @JoinColumn(name = "viewer_id"),
+            inverseJoinColumns = @JoinColumn(name = "stream_id")
+    )
     private List<MyStream> followedStreams = new ArrayList<>();
 
     public Viewer() {
