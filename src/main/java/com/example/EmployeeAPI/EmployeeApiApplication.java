@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,13 +29,27 @@ public class EmployeeApiApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(EmployeeApiApplication.class, args);
-        UniversityRepository universityRepository = run.getBean(UniversityRepository.class);
-        StudentRepository studentRepository = run.getBean(StudentRepository.class);
-        Student student1=new Student("1111");
-        Student student2=new Student("1112");
-        List<Student> students = Arrays.asList(student1,student2);
-        University university = new University("Uoc",students);
-        universityRepository.save(university);
+        MyStreamRepository myStreamRepository = run.getBean(MyStreamRepository.class);
+        ViewerRepository viewerRepository = run.getBean(ViewerRepository.class);
+
+        Viewer viewer1=new Viewer("J122");
+        Viewer viewer2=new Viewer("A456");
+        Viewer viewer3=new Viewer("kl456");
+        List<Viewer> viewers=Arrays.asList(viewer1,viewer2,viewer3);
+
+        MyStream cookingStream=new MyStream("Cooking is Auesome");
+        MyStream gamingStream = new MyStream("Gaming");
+        List<MyStream> myStreams=Arrays.asList(cookingStream,gamingStream);
+
+        myStreamRepository.saveAll(myStreams);
+
+
+        viewer1.followStream(cookingStream);
+        viewer1.followStream(gamingStream);
+        viewer2.followStream(gamingStream);
+        viewer3.followStream(gamingStream);
+
+        viewerRepository.saveAll(viewers);
 
 
     }
