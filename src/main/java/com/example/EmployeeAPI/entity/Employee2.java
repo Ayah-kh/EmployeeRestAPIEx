@@ -6,20 +6,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table (name = "employee_2")
+@Table (name = "emp_tab")
 public class Employee2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "e_id")
     private Integer empId;
-    private Integer empName;
-    private Integer empDept;
-    private Integer empSal;
+    private String empName;
+    private String empDept;
+    private Double empSal;
 
-    public Employee2(Integer empName, Integer empDept, Integer empSal) {
+    public Employee2() {
+    }
+
+    public Employee2(String empName, String empDept, Double empSal) {
         this.empName = empName;
         this.empDept = empDept;
         this.empSal = empSal;
